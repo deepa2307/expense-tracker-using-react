@@ -6,6 +6,7 @@ function ExpenseDetails(props) {
       <h2>{props.title}</h2>
       <div className="expense-item">{props.location}</div>
       <div className="expense-item__price">${props.amount}</div>
+      <button>Delete Expense</button>
     </div>
   );
 }
