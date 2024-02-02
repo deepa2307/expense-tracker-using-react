@@ -1,6 +1,8 @@
-import Expenses from "./components/ExpensesAll/Expenses";
+import ExpenseItems from "./ExpenseItems";
+import "./Expenses.css";
+import Card from "../UI/Card";
 
-function App() {
+function Expenses(props) {
   const expenses = [
     {
       title: " Car",
@@ -27,7 +29,20 @@ function App() {
       location: "rajkot",
     },
   ];
-  return <Expenses items={expenses} />;
+
+  return (
+    <Card className="expenses">
+      {expenses.map((expense, index) => (
+        <ExpenseItems
+          key={index}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+          location={expense.location}
+        />
+      ))}
+    </Card>
+  );
 }
 
-export default App;
+export default Expenses;

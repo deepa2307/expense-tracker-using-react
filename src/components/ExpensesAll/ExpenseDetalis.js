@@ -1,3 +1,5 @@
+import "./ExpenseDetails.css";
+
 function ExpenseDetails(props) {
   return (
     <div className="expense-item__description">
