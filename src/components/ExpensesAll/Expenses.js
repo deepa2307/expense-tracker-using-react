@@ -1,8 +1,10 @@
 import ExpenseItems from "./ExpenseItems";
 import "./Expenses.css";
+import ExpensesFilter from "./ExpensesFilter";
 import Card from "../UI/Card";
+import { useState } from "react";
 
-function Expenses(props) {
+const Expenses = (props) => {
   const expenses = [
     {
       title: " Car",
@@ -30,8 +32,18 @@ function Expenses(props) {
     },
   ];
 
+  const [filteredYear, setFilteredYear] = useState("2020");
+
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+  };
+
   return (
     <Card className="expenses">
+      <ExpensesFilter
+        selected={filteredYear}
+        onChangeFilter={filterChangeHandler}
+      />
       {expenses.map((expense, index) => (
         <ExpenseItems
           key={index}
@@ -43,6 +55,6 @@ function Expenses(props) {
       ))}
     </Card>
   );
-}
+};
 
 export default Expenses;
