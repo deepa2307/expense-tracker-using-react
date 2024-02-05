@@ -8,7 +8,7 @@ const Expenses = (props) => {
   const expenses = [
     {
       title: " Car",
-      amount: "2500",
+      amount: 2500,
       date: new Date(2021, 2, 28),
       location: "baroda",
     },
@@ -41,23 +41,37 @@ const Expenses = (props) => {
   const filteredExpenses = props.items.filter((expense) => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
+
   return (
     <Card className="expenses">
       <ExpensesFilter
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
-      {filteredExpenses.map((expense, index) => (
-        <ExpenseItems
-          key={index}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-          location={expense.location}
-        />
-      ))}
+      {filteredExpenses.length === 0 ? (
+        <p>No expense found</p>
+      ) : filteredExpenses.length === 1 ? (
+        <p>Only one expense found</p>
+      ) : (
+        filteredExpenses.map((expense, index) => (
+          <ExpenseItems
+            key={index}
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+            location={expense.location}
+          />
+        ))
+      )}
     </Card>
   );
 };
 
 export default Expenses;
+
+//   filteredExpenses.length === 1 ? (
+//     <p> only one expense found</p>
+//   ) : (
+//     <p>no items found</p>
+//   )
+// ) :
